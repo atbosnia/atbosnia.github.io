@@ -77,8 +77,8 @@
         font-synthesis: none;
         font-kerning: none;
         font-variant-ligatures: none;
-        font-feature-settings: "kern" 0, "calt" 0, "liga" 0, "clig" 0, "dlig" 0,
-          "hlig" 0;
+        font-feature-settings: 'kern' 0, 'calt' 0, 'liga' 0, 'clig' 0, 'dlig' 0,
+          'hlig' 0;
         font-family: unset;
         -webkit-font-smoothing: subpixel-antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -4379,70 +4379,70 @@
     </noscript>
     <script nonce="1c5be8aa-1470-4c60-839e-2901a46e54b3">
       !(function () {
-        "use strict";
+        'use strict'
 
         function t(t, n) {
-          let e;
+          let e
           return (...o) => {
             clearTimeout(e),
               (e = setTimeout(() => {
-                t(...o);
-              }, n));
-          };
+                t(...o)
+              }, n))
+          }
         }
         class n {
           constructor() {
-            (this.callbacks = []),
-              window.addEventListener("DOMContentLoaded", () =>
-                this.onDOMContentLoaded()
-              );
+            ;(this.callbacks = []),
+              window.addEventListener('DOMContentLoaded', () =>
+                this.onDOMContentLoaded(),
+              )
           }
           onDOMContentLoaded() {
             this.callbacks
               .sort((t, n) => t.priority - n.priority)
-              .forEach(({ callback: t }) => t());
+              .forEach(({ callback: t }) => t())
           }
           runOnLoad(t) {
-            "loading" === document.readyState
+            'loading' === document.readyState
               ? this.callbacks.push(t)
-              : t.callback();
+              : t.callback()
           }
         }
 
         function e(t, e = Number.MAX_VALUE) {
-          var o;
-          (window.canva_scriptExecutor =
+          var o
+          ;(window.canva_scriptExecutor =
             null !== (o = window.canva_scriptExecutor) && void 0 !== o
               ? o
               : new n()).runOnLoad({
             callback: t,
             priority: e,
-          });
+          })
         }
         class o {
           constructor(t) {
-            (this.items = []),
+            ;(this.items = []),
               (this.previousWidth = document.documentElement.clientWidth),
-              (this.previousHeight = window.innerHeight);
-            const n = t(() => this.onWindowResize(), 100);
-            window.addEventListener("resize", n);
+              (this.previousHeight = window.innerHeight)
+            const n = t(() => this.onWindowResize(), 100)
+            window.addEventListener('resize', n)
           }
           onWindowResize() {
             const t = document.documentElement.clientWidth,
               n = window.innerHeight,
               e = this.previousWidth !== t,
-              o = this.previousHeight !== n;
+              o = this.previousHeight !== n
             this.items.forEach((t) => {
               const n = () => {
-                t.callback(), (t.executed = !0);
-              };
-              (!t.executed ||
+                t.callback(), (t.executed = !0)
+              }
+              ;(!t.executed ||
                 (e && t.options.runOnWidthChange) ||
                 (o && t.options.runOnHeightChange)) &&
-                n();
+                n()
             }),
               (this.previousWidth = t),
-              (this.previousHeight = n);
+              (this.previousHeight = n)
           }
           runOnResize(t, n) {
             this.items.push({
@@ -4451,15 +4451,15 @@
               executed: n.runOnLoad,
             }),
               this.items.sort(
-                (t, n) => t.options.priority - n.options.priority
+                (t, n) => t.options.priority - n.options.priority,
               ),
-              n.runOnLoad && e(t, n.priority);
+              n.runOnLoad && e(t, n.priority)
           }
         }
 
         function i(n, e, i = t) {
-          var r;
-          (window.canva_debounceResize =
+          var r
+          ;(window.canva_debounceResize =
             null !== (r = window.canva_debounceResize) && void 0 !== r
               ? r
               : new o(i)).runOnResize(n, {
@@ -4468,178 +4468,174 @@
             runOnHeightChange: !1,
             priority: Number.MAX_VALUE,
             ...e,
-          });
+          })
         }
 
         function r(t, n, e = 0.001) {
-          return Math.abs(t - n) < e;
+          return Math.abs(t - n) < e
         }
 
         function c(t, n) {
-          return window.getComputedStyle(t).getPropertyValue(n);
+          return window.getComputedStyle(t).getPropertyValue(n)
         }
 
         function u(t, n, e) {
-          t.style.setProperty(n, e);
+          t.style.setProperty(n, e)
         }
 
         function s(t, n) {
-          const e = document.createElement("div");
-          e.style.setProperty(t, n), document.body.append(e);
-          const o = c(e, t);
-          return e.remove(), o;
+          const e = document.createElement('div')
+          e.style.setProperty(t, n), document.body.append(e)
+          const o = c(e, t)
+          return e.remove(), o
         }
 
         function a() {
           const t = (function () {
-              const t = parseFloat(s("font-size", "0.1px"));
-              return t > 1 ? t : 0;
+              const t = parseFloat(s('font-size', '0.1px'))
+              return t > 1 ? t : 0
             })(),
             n = (function (t) {
-              const n = 2 * Math.max(t, 1);
-              return n / parseFloat(s("font-size", `${n}px`));
-            })(t);
+              const n = 2 * Math.max(t, 1)
+              return n / parseFloat(s('font-size', `${n}px`))
+            })(t)
           if (
             ((function (t) {
-              if (0 === t) return;
-              u(document.documentElement, "--minfs", `${t}px`),
+              if (0 === t) return
+              u(document.documentElement, '--minfs', `${t}px`),
                 i(
                   () => {
                     const n = 100 * t,
-                      { clientWidth: e } = document.documentElement;
+                      { clientWidth: e } = document.documentElement
                     u(
                       document.documentElement,
-                      "--rzf",
-                      n > e ? (e / n).toPrecision(4) : null
-                    );
+                      '--rzf',
+                      n > e ? (e / n).toPrecision(4) : null,
+                    )
                   },
                   {
                     runOnLoad: !0,
-                  }
-                );
+                  },
+                )
             })(t * Math.max(1, n)),
             r(n, 1))
           )
-            return;
+            return
           const e = r(
-            parseFloat(c(document.documentElement, "font-size")),
-            parseFloat(s("grid-template-columns", "1rem"))
-          );
-          u(
-            document.documentElement,
-            e ? "--rfso" : "--bfso",
-            n.toPrecision(4)
-          );
+            parseFloat(c(document.documentElement, 'font-size')),
+            parseFloat(s('grid-template-columns', '1rem')),
+          )
+          u(document.documentElement, e ? '--rfso' : '--bfso', n.toPrecision(4))
         }
 
         function d() {
           document
-            .querySelectorAll("img, image, video, svg")
+            .querySelectorAll('img, image, video, svg')
             .forEach((t) =>
-              t.addEventListener("contextmenu", (t) => t.preventDefault())
-            );
+              t.addEventListener('contextmenu', (t) => t.preventDefault()),
+            )
         }
-        var l;
+        var l
         const m =
-          "undefined" != typeof window
+          'undefined' != typeof window
             ? null === (l = window.navigator) || void 0 === l
               ? void 0
               : l.userAgent
-            : void 0;
+            : void 0
         const f = !(
           !m ||
           ((h = m),
           !h.match(/AppleWebKit\//) ||
             h.match(/Chrome\//) ||
             h.match(/Chromium\//))
-        );
-        var h;
+        )
+        var h
 
         function p() {
-          document.documentElement.style.setProperty("--ffsd", "0.5px");
+          document.documentElement.style.setProperty('--ffsd', '0.5px')
         }
 
         function g() {
-          const t = window.innerWidth - document.documentElement.clientWidth;
-          var n, e, o;
-          (n = document.documentElement),
-            (e = "--sbw"),
+          const t = window.innerWidth - document.documentElement.clientWidth
+          var n, e, o
+          ;(n = document.documentElement),
+            (e = '--sbw'),
             (o = t >= 0 ? `${t}px` : null),
-            n.style.setProperty(e, o);
+            n.style.setProperty(e, o)
         }
 
         function v() {
           document
-            .querySelectorAll("svg")
-            .forEach((t) => (t.style.background = "url('')"));
+            .querySelectorAll('svg')
+            .forEach((t) => (t.style.background = "url('')"))
         }
 
         function y(t) {
-          const n = Array.from(t.children);
+          const n = Array.from(t.children)
           n.forEach((t, e) => {
-            if (t.hasAttribute("data-foreign-object-container"))
-              (t.style.transformOrigin = ""), (t.style.transform = "");
+            if (t.hasAttribute('data-foreign-object-container'))
+              (t.style.transformOrigin = ''), (t.style.transform = '')
             else {
-              const o = document.createElement("div");
-              o.setAttribute("data-foreign-object-container", ""),
-                t.insertAdjacentElement("beforebegin", o),
+              const o = document.createElement('div')
+              o.setAttribute('data-foreign-object-container', ''),
+                t.insertAdjacentElement('beforebegin', o),
                 t.remove(),
                 o.append(t),
-                (n[e] = o);
+                (n[e] = o)
             }
-          });
-          const e = t.getScreenCTM();
-          if (!e) return;
-          const { a: o, b: i, c: r, d: c } = e;
+          })
+          const e = t.getScreenCTM()
+          if (!e) return
+          const { a: o, b: i, c: r, d: c } = e
           n.forEach((t) => {
-            if (!t.hasAttribute("data-foreign-object-container")) return;
-            const { style: n } = t;
-            (n.transformOrigin = "0px 0px"),
-              (n.transform = `matrix(${o}, ${i}, ${r}, ${c}, 0, 0)`);
-          });
+            if (!t.hasAttribute('data-foreign-object-container')) return
+            const { style: n } = t
+            ;(n.transformOrigin = '0px 0px'),
+              (n.transform = `matrix(${o}, ${i}, ${r}, ${c}, 0, 0)`)
+          })
         }
-        let w;
+        let w
 
         function b() {
           w ||
-            (w = Array.from(document.querySelectorAll("foreignObject")).filter(
-              (t) => 0 === t.getBoundingClientRect().width
+            (w = Array.from(document.querySelectorAll('foreignObject')).filter(
+              (t) => 0 === t.getBoundingClientRect().width,
             )),
-            Array.from(w).forEach(y);
+            Array.from(w).forEach(y)
         }
-        [
+        ;[
           function () {
-            f && e(p);
+            f && e(p)
           },
           function () {
-            e(a);
+            e(a)
           },
           function () {
             i(g, {
               runOnLoad: !0,
               priority: 1,
-            });
+            })
           },
           function () {
             f &&
               i(b, {
                 runOnLoad: !0,
-              });
+              })
           },
           function () {
-            f && e(v);
+            f && e(v)
           },
           function () {
-            e(d);
+            e(d)
           },
-        ].forEach((t) => t());
-      })();
+        ].forEach((t) => t())
+      })()
     </script>
     <script nonce="1c5be8aa-1470-4c60-839e-2901a46e54b3">
-      window.C_CAPTCHA_IMPLEMENTATION = "RECAPTCHA";
+      window.C_CAPTCHA_IMPLEMENTATION = 'RECAPTCHA'
     </script>
     <script nonce="1c5be8aa-1470-4c60-839e-2901a46e54b3">
-      window.C_CAPTCHA_KEY = "6Ldk59waAAAAAMPqkICbJjfMivZLCGtTpa6Wn6zO";
+      window.C_CAPTCHA_KEY = '6Ldk59waAAAAAMPqkICbJjfMivZLCGtTpa6Wn6zO'
     </script>
   </head>
   <body>
@@ -4665,7 +4661,7 @@
             min-width: 100%;
           "
         >
-          <div id="NHEj42YOfEeBgZ6C" style="z-index: 0">
+          <div id="NHEj42YOfEeBgZ6C" style="z-index: 0;">
             <div
               id="X9tN3KC8iORxyul7"
               style="
@@ -4677,7 +4673,7 @@
             >
               <div
                 id="Xilt67zfokzcZRv5"
-                style="width: 100%; opacity: 1; height: 100%"
+                style="width: 100%; opacity: 1; height: 100%;"
               >
                 <div
                   id="LnkYN1REXIfmJDxS"
@@ -4734,10 +4730,10 @@
             grid-area: 1 / 2 / 2 / 3;
           "
         >
-          <div id="cAM9StK7GoDf9fcf" style="z-index: 1">
+          <div id="cAM9StK7GoDf9fcf" style="z-index: 1;">
             <div
               id="NigN2QdyTVH1wazu"
-              style="padding-top: 100%; transform: rotate(0deg)"
+              style="padding-top: 100%; transform: rotate(0deg);"
             >
               <div
                 id="bzGQmLlYTxizvpYR"
@@ -4751,7 +4747,7 @@
               >
                 <div
                   id="cDJYN8eg2dbQoJIC"
-                  style="width: 100%; opacity: 1; height: 100%"
+                  style="width: 100%; opacity: 1; height: 100%;"
                 >
                   <div
                     id="z9Lk4gog9ADZkP5I"
@@ -4792,7 +4788,7 @@
               </div>
             </div>
           </div>
-          <div id="oJNPxgko8oBIHrVU" style="z-index: 6">
+          <div id="oJNPxgko8oBIHrVU" style="z-index: 6;">
             <div
               id="EgUy5hI6vnih1Skl"
               style="
@@ -4840,7 +4836,7 @@
               </div>
             </div>
           </div>
-          <div id="nvN66w3SJhYOvqu5" style="z-index: 7">
+          <div id="nvN66w3SJhYOvqu5" style="z-index: 7;">
             <div
               id="xCVtU5XfkawvSAhE"
               style="
@@ -4888,7 +4884,7 @@
               </div>
             </div>
           </div>
-          <div id="iD8nCVjv9ylJ08Yg" style="z-index: 8">
+          <div id="iD8nCVjv9ylJ08Yg" style="z-index: 8;">
             <div
               id="fRwQQt76HpBhL1uk"
               style="
@@ -4936,7 +4932,7 @@
               </div>
             </div>
           </div>
-          <div id="O6qLS9zBhun3s1dk" style="z-index: 9">
+          <div id="O6qLS9zBhun3s1dk" style="z-index: 9;">
             <div
               id="fqwVlszAHp6fXI1s"
               style="
@@ -4984,7 +4980,7 @@
               </div>
             </div>
           </div>
-          <div id="dYAAb6kT682n4PVu" style="z-index: 5">
+          <div id="dYAAb6kT682n4PVu" style="z-index: 5;">
             <div
               id="PL5lnhFmFrBGS7H6"
               style="
@@ -5016,7 +5012,7 @@
                     text-align: center;
                   "
                 >
-                  <span id="FMITkRhAwAIpLKVF" style="color: #ffffff">
+                  <span id="FMITkRhAwAIpLKVF" style="color: #ffffff;">
                     Welcome to
                   </span>
                   <br />
@@ -5027,9 +5023,9 @@
           <div id="fdx20QBD5C9ITM8K">
             <div
               id="aPUtaAfHpQ6F3dAq"
-              style="display: grid; position: relative"
+              style="display: grid; position: relative;"
             >
-              <div id="p0lYu3WJ52fX3pUe" style="z-index: 3">
+              <div id="p0lYu3WJ52fX3pUe" style="z-index: 3;">
                 <div
                   id="Dre6THeFY7KgA9ab"
                   style="
@@ -5061,7 +5057,7 @@
                         text-align: center;
                       "
                     >
-                      <span id="vRd7hjw5NDtmpfvK" style="color: #ffffff">
+                      <span id="vRd7hjw5NDtmpfvK" style="color: #ffffff;">
                         Adventure Travels Bosnia
                       </span>
                       <br />
@@ -5069,7 +5065,7 @@
                   </div>
                 </div>
               </div>
-              <div id="KGoUuABYpwF46Gu6" style="z-index: 4">
+              <div id="KGoUuABYpwF46Gu6" style="z-index: 4;">
                 <div
                   id="sfj5UxAToPWN5Ly8"
                   style="
@@ -5101,7 +5097,7 @@
                         text-align: center;
                       "
                     >
-                      <span id="Vmkv2fN9tqEI3B8d" style="color: #ffffff">
+                      <span id="Vmkv2fN9tqEI3B8d" style="color: #ffffff;">
                         Join us on a journey!
                       </span>
                       <br />
@@ -5135,7 +5131,7 @@
             min-width: 100%;
           "
         >
-          <div id="zJBcPxYGOhFSRQyk" style="z-index: 0">
+          <div id="zJBcPxYGOhFSRQyk" style="z-index: 0;">
             <div
               id="Gp5TJwGxXFf0kLRp"
               style="
@@ -5147,7 +5143,7 @@
             >
               <div
                 id="gRuFDYtrCLZZHSnu"
-                style="width: 100%; opacity: 1; height: 100%"
+                style="width: 100%; opacity: 1; height: 100%;"
               >
                 <div
                   id="hZNWrU2LJsbaoIb1"
@@ -5167,12 +5163,12 @@
         </div>
         <div
           id="oLQwKpSEZuQeKtlj"
-          style="display: grid; position: relative; grid-area: 1 / 2 / 2 / 3"
+          style="display: grid; position: relative; grid-area: 1 / 2 / 2 / 3;"
         >
-          <div id="pyh4NiV7IzDFpUEe" style="z-index: 1">
+          <div id="pyh4NiV7IzDFpUEe" style="z-index: 1;">
             <div
               id="E4BiN9aeUnUjjvIO"
-              style="padding-top: 112.44509517%; transform: rotate(0deg)"
+              style="padding-top: 112.44509517%; transform: rotate(0deg);"
             >
               <div
                 id="rNwH3Z2XoxIAjRGz"
@@ -5186,7 +5182,7 @@
               >
                 <div
                   id="MuRxyUSwYLeZ9Yvs"
-                  style="width: 100%; opacity: 1; height: 100%"
+                  style="width: 100%; opacity: 1; height: 100%;"
                 >
                   <div
                     id="ajeiTnhrh2UThkQr"
@@ -5238,7 +5234,7 @@
                 margin-top: 100px !important;
               "
             >
-              <div id="M3MLRGiGkcnrigoU" style="z-index: 3">
+              <div id="M3MLRGiGkcnrigoU" style="z-index: 3;">
                 <div
                   id="snxzQEcpIQtP5xVc"
                   style="
@@ -5268,7 +5264,7 @@
                         line-height: 1.099978em;
                       "
                     >
-                      <span id="ikb53QBqyALZbZeY" style="color: #ffffff">
+                      <span id="ikb53QBqyALZbZeY" style="color: #ffffff;">
                         Experience thrilling hiking and adventure tours with our
                         premier tourist agency.
                       </span>
@@ -5282,7 +5278,7 @@
                         line-height: 1.099978em;
                       "
                     >
-                      <span id="wMRAUIZmlzOSjuoH" style="color: #ffffff">
+                      <span id="wMRAUIZmlzOSjuoH" style="color: #ffffff;">
                         Immerse yourself in nature&#x27;s beauty on
                         unforgettable journeys.
                       </span>
@@ -5296,7 +5292,7 @@
                         line-height: 1.099978em;
                       "
                     >
-                      <span id="dDZLGHFNECbP6dRB" style="color: #ffffff">
+                      <span id="dDZLGHFNECbP6dRB" style="color: #ffffff;">
                         Our expert guides lead you through hidden gems and
                         awe-inspiring landscapes. From mountains to waterfalls,
                         each destination promises adventure. We prioritize
@@ -5350,7 +5346,7 @@
             min-width: 100%;
           "
         >
-          <div id="Dh8xh0HZZ54ZC3pO" style="z-index: 0">
+          <div id="Dh8xh0HZZ54ZC3pO" style="z-index: 0;">
             <div
               id="aOU3LZ7q1ZED6Bln"
               style="
@@ -5362,7 +5358,7 @@
             >
               <div
                 id="cFewddGdvOqFDYzA"
-                style="width: 100%; opacity: 1; height: 100%"
+                style="width: 100%; opacity: 1; height: 100%;"
               >
                 <div
                   id="ixrTeLDNNFCWcX2S"
@@ -5382,9 +5378,9 @@
         </div>
         <div
           id="GTrBj8yFu4eG0tsc"
-          style="display: grid; position: relative; grid-area: 1 / 2 / 2 / 3"
+          style="display: grid; position: relative; grid-area: 1 / 2 / 2 / 3;"
         >
-          <div id="RaW0sJz4tu0wFQOK" style="z-index: 4">
+          <div id="RaW0sJz4tu0wFQOK" style="z-index: 4;">
             <div
               id="Vzho8B8UlnxR6M35"
               style="
@@ -5416,7 +5412,7 @@
                     text-align: center;
                   "
                 >
-                  <span id="aprmW0yxUySH7ue0" style="color: #000000">
+                  <span id="aprmW0yxUySH7ue0" style="color: #000000;">
                     Top Destinations
                   </span>
                   <br />
@@ -5427,9 +5423,9 @@
           <div id="lH6MBgfXXFMCfPvY">
             <div
               id="nYZgJximujDdrXcl"
-              style="display: grid; position: relative"
+              style="display: grid; position: relative;"
             >
-              <div id="uzFFryEGKcHVY1rz" style="z-index: 1">
+              <div id="uzFFryEGKcHVY1rz" style="z-index: 1;">
                 <div
                   id="dFo7bxam69LYnVgQ"
                   style="
@@ -5441,7 +5437,7 @@
                 >
                   <div
                     id="LCggSUBvLi88BgKm"
-                    style="width: 100%; opacity: 1; height: 100%"
+                    style="width: 100%; opacity: 1; height: 100%;"
                   >
                     <div
                       id="dwBykfrgzs59FwYU"
@@ -5486,7 +5482,7 @@
                   </div>
                 </div>
               </div>
-              <div id="crk9SLFT5l8WHlQc" style="z-index: 5">
+              <div id="crk9SLFT5l8WHlQc" style="z-index: 5;">
                 <div
                   id="a0QEPDyi5fn5dg3x"
                   style="
@@ -5518,7 +5514,7 @@
                         text-align: center;
                       "
                     >
-                      <span id="XrQmCfPXPwpHxubb" style="color: #ffffff">
+                      <span id="XrQmCfPXPwpHxubb" style="color: #ffffff;">
                         Ravna Planina
                       </span>
                       <br />
@@ -5531,9 +5527,9 @@
           <div id="AAVJvXbRJ31YQMud">
             <div
               id="g8sqoQz11yHGVHvJ"
-              style="display: grid; position: relative"
+              style="display: grid; position: relative;"
             >
-              <div id="YD9t0b5v0qd0XHMv" style="z-index: 2">
+              <div id="YD9t0b5v0qd0XHMv" style="z-index: 2;">
                 <div
                   id="x2SqX2rItdQuWs7M"
                   style="
@@ -5545,7 +5541,7 @@
                 >
                   <div
                     id="GUGr8kXPVXCKuXVj"
-                    style="width: 100%; opacity: 1; height: 100%"
+                    style="width: 100%; opacity: 1; height: 100%;"
                   >
                     <div
                       id="bmAozubSL4xQCLnT"
@@ -5585,7 +5581,7 @@
                   </div>
                 </div>
               </div>
-              <div id="VFw7JRkxBbX0eCHF" style="z-index: 6">
+              <div id="VFw7JRkxBbX0eCHF" style="z-index: 6;">
                 <div
                   id="TvF8E8nopKt515f8"
                   style="
@@ -5619,7 +5615,7 @@
                         text-align: center;
                       "
                     >
-                      <span id="qINwwtFls4r7LwRe" style="color: #ffffff">
+                      <span id="qINwwtFls4r7LwRe" style="color: #ffffff;">
                         Mostar
                       </span>
                       <br />
@@ -5632,9 +5628,9 @@
           <div id="CXqEdtj5y4LMQYWH">
             <div
               id="hEAB4LqkDqwKhkiu"
-              style="display: grid; position: relative"
+              style="display: grid; position: relative;"
             >
-              <div id="BR8PoU8fIoZLhj9F" style="z-index: 3">
+              <div id="BR8PoU8fIoZLhj9F" style="z-index: 3;">
                 <div
                   id="OPEsZoHvQ1lB1fie"
                   style="
@@ -5646,7 +5642,7 @@
                 >
                   <div
                     id="upd7nuW6Fe2WjvO4"
-                    style="width: 100%; opacity: 1; height: 100%"
+                    style="width: 100%; opacity: 1; height: 100%;"
                   >
                     <div
                       id="nuoxfVKuQdUJIk4R"
@@ -5691,7 +5687,7 @@
                   </div>
                 </div>
               </div>
-              <div id="rM2GsHzpEsTn2wZ1" style="z-index: 7">
+              <div id="rM2GsHzpEsTn2wZ1" style="z-index: 7;">
                 <div
                   id="tBtn76PGqQBBg7Nq"
                   style="
@@ -5725,7 +5721,7 @@
                         text-align: center;
                       "
                     >
-                      <span id="xC39Fi9kusgIgDJ3" style="color: #ffffff">
+                      <span id="xC39Fi9kusgIgDJ3" style="color: #ffffff;">
                         Blagaj
                       </span>
                       <br />
@@ -5735,7 +5731,7 @@
               </div>
             </div>
           </div>
-          <div id="mehZrGlxZC4iHxJD" style="z-index: 8">
+          <div id="mehZrGlxZC4iHxJD" style="z-index: 8;">
             <div
               id="yAJLQ2vRbuZaV1Tb"
               style="
@@ -5767,7 +5763,7 @@
                     text-align: center;
                   "
                 >
-                  <span id="Co7mGfCljxqbvSBz" style="color: #000000">
+                  <span id="Co7mGfCljxqbvSBz" style="color: #000000;">
                     Custom adventures can be arranged, feel free to contact us!
                   </span>
                   <br />
@@ -5799,7 +5795,7 @@
             min-width: 100%;
           "
         >
-          <div id="VFfDdRh9gT0iqHfv" style="z-index: 0">
+          <div id="VFfDdRh9gT0iqHfv" style="z-index: 0;">
             <div
               id="UMTCsqjkmXFtDdPe"
               style="
@@ -5811,7 +5807,7 @@
             >
               <div
                 id="i1jq4Ps7Nb9WtsIG"
-                style="width: 100%; opacity: 1; height: 100%"
+                style="width: 100%; opacity: 1; height: 100%;"
               >
                 <div
                   id="KHm1ZRctDodrgTKt"
@@ -5831,7 +5827,7 @@
         </div>
         <div
           id="kruMWHK6ZYR2pCjt"
-          style="display: grid; position: relative; grid-area: 1 / 2 / 2 / 3"
+          style="display: grid; position: relative; grid-area: 1 / 2 / 2 / 3;"
         >
           <div id="mqdNyr61R3MGPVaM">
             <div
@@ -5842,7 +5838,7 @@
                 grid-area: 2 / 2 / 3 / 3;
               "
             >
-              <div id="PfM7p9XsJzQHuUMd" style="z-index: 2">
+              <div id="PfM7p9XsJzQHuUMd" style="z-index: 2;">
                 <div
                   id="ae002IZufUDBsiVH"
                   style="
@@ -5854,7 +5850,7 @@
                 >
                   <div
                     id="THeTIykQkZJ9riXn"
-                    style="width: 100%; opacity: 1; height: 100%"
+                    style="width: 100%; opacity: 1; height: 100%;"
                   >
                     <div
                       id="MJRNha67C691f2H5"
@@ -5899,10 +5895,10 @@
                   </div>
                 </div>
               </div>
-              <div id="afFFPNzyMWg7O13b" style="z-index: 3">
+              <div id="afFFPNzyMWg7O13b" style="z-index: 3;">
                 <div
                   id="LdLHMdEbVZCa87Hf"
-                  style="padding-top: 41.37168142%; transform: rotate(0deg)"
+                  style="padding-top: 41.37168142%; transform: rotate(0deg);"
                 >
                   <div
                     id="FPe7L32UGBWmpeEZ"
@@ -5916,7 +5912,7 @@
                   >
                     <div
                       id="AQuDcgSJgFmK3iDR"
-                      style="width: 100%; opacity: 1; height: 100%"
+                      style="width: 100%; opacity: 1; height: 100%;"
                     >
                       <div
                         id="KpkeIlSy9k8ZOCLq"
@@ -5957,10 +5953,10 @@
                   </div>
                 </div>
               </div>
-              <div id="arVxTNoS0MCbbRlg" style="z-index: 5">
+              <div id="arVxTNoS0MCbbRlg" style="z-index: 5;">
                 <div
                   id="WDwmzChsho8aUc9O"
-                  style="padding-top: 41.37168142%; transform: rotate(0deg)"
+                  style="padding-top: 41.37168142%; transform: rotate(0deg);"
                 >
                   <div
                     id="FBWYo8KUtdXjzsNJ"
@@ -5974,7 +5970,7 @@
                   >
                     <div
                       id="sUg5ZBcBaPRzU7L3"
-                      style="width: 100%; opacity: 1; height: 100%"
+                      style="width: 100%; opacity: 1; height: 100%;"
                     >
                       <div
                         id="i2t3UGm9eClr7AOS"
@@ -6015,10 +6011,10 @@
                   </div>
                 </div>
               </div>
-              <div id="sWJ8VlqgpKqAws3i" style="z-index: 4">
+              <div id="sWJ8VlqgpKqAws3i" style="z-index: 4;">
                 <div
                   id="A5NWPOr65tqUZkFm"
-                  style="padding-top: 42.47787611%; transform: rotate(0deg)"
+                  style="padding-top: 42.47787611%; transform: rotate(0deg);"
                 >
                   <div
                     id="WEsatnyfiUpGdUfX"
@@ -6032,7 +6028,7 @@
                   >
                     <div
                       id="q8JElaG8BZJVZJeU"
-                      style="width: 100%; opacity: 1; height: 100%"
+                      style="width: 100%; opacity: 1; height: 100%;"
                     >
                       <div
                         id="Lk8jT4TJKhA85M0H"
@@ -6104,7 +6100,7 @@
             min-width: 100%;
           "
         >
-          <div id="SbEmBp1thn8a0zVE" style="z-index: 0">
+          <div id="SbEmBp1thn8a0zVE" style="z-index: 0;">
             <div
               id="w3vbHL1Xl6jAwYP3"
               style="
@@ -6116,7 +6112,7 @@
             >
               <div
                 id="FByGF2f6jF6exV2u"
-                style="width: 100%; opacity: 1; height: 100%"
+                style="width: 100%; opacity: 1; height: 100%;"
               >
                 <div
                   id="vsWVPI7zd08k0uix"
@@ -6136,9 +6132,9 @@
         </div>
         <div
           id="HgnC9XADyAg5zHgr"
-          style="display: grid; position: relative; grid-area: 1 / 2 / 2 / 3"
+          style="display: grid; position: relative; grid-area: 1 / 2 / 2 / 3;"
         >
-          <div id="fdqHzMcFPowaDcDK" style="z-index: 5">
+          <div id="fdqHzMcFPowaDcDK" style="z-index: 5;">
             <div
               id="HJX0rgLRpo0fDvus"
               style="
@@ -6172,7 +6168,7 @@
                 >
                   <span
                     id="YiP6SvLMbOqlFbUB"
-                    style="color: #000000; font-weight: 700"
+                    style="color: #000000; font-weight: 700;"
                   >
                     You can reach us via:
                   </span>
@@ -6181,10 +6177,10 @@
               </div>
             </div>
           </div>
-          <div id="HzsYkgdAsak381JQ" style="z-index: 1">
+          <div id="HzsYkgdAsak381JQ" style="z-index: 1;">
             <div
               id="zNWzwCepzej5yIAt"
-              style="padding-top: 65.63636364%; transform: rotate(0deg)"
+              style="padding-top: 65.63636364%; transform: rotate(0deg);"
             >
               <div
                 id="oE19lnc2biW5SzvO"
@@ -6200,11 +6196,11 @@
                   id="sIc2DwJKBGTgEU2s"
                   target="_blank"
                   href="mailto:atbosnia@hotmail.com"
-                  style="pointer-events: all"
+                  style="pointer-events: all;"
                 >
                   <div
                     id="f4OpaGjqOVYWgYyb"
-                    style="width: 100%; opacity: 1; height: 100%"
+                    style="width: 100%; opacity: 1; height: 100%;"
                   >
                     <div
                       id="jjUZLhR9EZQqLTIS"
@@ -6247,10 +6243,10 @@
               </div>
             </div>
           </div>
-          <div id="FahssSXHCDMbI4hd" style="z-index: 2">
+          <div id="FahssSXHCDMbI4hd" style="z-index: 2;">
             <div
               id="xNj9FAcy7Njw6b8W"
-              style="padding-top: 100%; transform: rotate(0deg)"
+              style="padding-top: 100%; transform: rotate(0deg);"
             >
               <div
                 id="sOAiWe0QmIYNV3qj"
@@ -6267,11 +6263,11 @@
                   target="_blank"
                   rel="noopener"
                   href="tel:+387603234102"
-                  style="pointer-events: all"
+                  style="pointer-events: all;"
                 >
                   <div
                     id="W8dMedeqPpENmCHX"
-                    style="width: 100%; opacity: 1; height: 100%"
+                    style="width: 100%; opacity: 1; height: 100%;"
                   >
                     <div
                       id="OxCnJsxjzj5ffFAt"
@@ -6314,10 +6310,10 @@
               </div>
             </div>
           </div>
-          <div id="R9JsC6nCo1D9cmX5" style="z-index: 3">
+          <div id="R9JsC6nCo1D9cmX5" style="z-index: 3;">
             <div
               id="VExnECJSxRuW4Oek"
-              style="padding-top: 100%; transform: rotate(0deg)"
+              style="padding-top: 100%; transform: rotate(0deg);"
             >
               <div
                 id="T8FJA6hU08TiTTYO"
@@ -6334,11 +6330,11 @@
                   target="_blank"
                   rel="noopener"
                   href="https://api.whatsapp.com/send/?phone=387603234102&text&type=phone_number&app_absent=0"
-                  style="pointer-events: all"
+                  style="pointer-events: all;"
                 >
                   <div
                     id="AWq7oqqgo1gmzwGR"
-                    style="width: 100%; opacity: 1; height: 100%"
+                    style="width: 100%; opacity: 1; height: 100%;"
                   >
                     <div
                       id="qeso26D9xACMrMyc"
@@ -6381,10 +6377,10 @@
               </div>
             </div>
           </div>
-          <div id="CaoCsV5Nbzh96lWB" style="z-index: 4">
+          <div id="CaoCsV5Nbzh96lWB" style="z-index: 4;">
             <div
               id="PcNq4BHorW6LxLeB"
-              style="padding-top: 100%; transform: rotate(0deg)"
+              style="padding-top: 100%; transform: rotate(0deg);"
             >
               <div
                 id="oggc733NmuwA7557"
@@ -6398,7 +6394,7 @@
               >
                 <div
                   id="o3cZL5kRthpwgyxN"
-                  style="width: 100%; opacity: 1; height: 100%"
+                  style="width: 100%; opacity: 1; height: 100%;"
                 >
                   <div
                     id="fFvuiVNGM77KHbcz"
@@ -6452,154 +6448,5 @@
         nonce="1c5be8aa-1470-4c60-839e-2901a46e54b3"
       ></script>
     </div>
-    <script nonce="1c5be8aa-1470-4c60-839e-2901a46e54b3">
-      const lang = navigator.language ? navigator.language : "en";
-      fetch("_footer?lang=" + encodeURIComponent(lang)).then((response) => {
-        response.text().then((footerStr) => {
-          const div = document.createElement("div");
-          div.innerHTML = footerStr;
-          for (const child of [...div.children]) {
-            if (child.tagName.toLowerCase() !== "script") {
-              document.body.append(child);
-            }
-          }
-          (() => {
-            !(function () {
-              "use strict";
-              const e = document.getElementById("modal_backdrop"),
-                t = document.getElementById("report_form"),
-                o = document.getElementById("report_button"),
-                n = document.getElementById("form_report"),
-                c = document.getElementById("form_cancel"),
-                s = document.getElementById("form_submit_reason"),
-                a = document.getElementById("form_go_back"),
-                d = document.getElementById("form_submit_captcha"),
-                l = document.getElementById("form_close"),
-                i = document.getElementById("report_reason_0"),
-                r = document.getElementById("error_message"),
-                m = document.getElementById("error_message_captcha"),
-                u = [
-                  document.getElementById("form_step_terms"),
-                  document.getElementById("form_step_report_reason"),
-                  document.getElementById("form_step_captcha"),
-                  document.getElementById("form_step_success"),
-                ];
-
-              function p() {
-                e.classList.remove("active"),
-                  t.classList.remove("active"),
-                  o.classList.remove("active"),
-                  o.focus();
-              }
-
-              function E(e) {
-                u.forEach((t, o) => {
-                  t.style.display = o === e ? "block" : "none";
-                });
-              }
-              let _,
-                y = !1;
-              const f =
-                "NETEASE" === window.C_CAPTCHA_IMPLEMENTATION
-                  ? () => _
-                  : () => {
-                      const e = t.elements.namedItem("g-recaptcha-response");
-                      return null == e ? void 0 : e.value;
-                    };
-              (e.onclick = p),
-                (c.onclick = p),
-                (l.onclick = p),
-                (o.onclick = function () {
-                  u.forEach((e, t) => {
-                    e.style.display = 0 === t ? "block" : "none";
-                  }),
-                    e.classList.add("active"),
-                    t.classList.add("active"),
-                    o.classList.add("active"),
-                    (i.checked = !0),
-                    setTimeout(() => {
-                      i.focus();
-                    }, 350);
-                }),
-                (n.onclick = () => E(1)),
-                (s.onclick = () => {
-                  E(2),
-                    (function () {
-                      if (y) return;
-                      const e = document.createElement("script");
-                      console.log(
-                        "our window captcha: ",
-                        window.C_CAPTCHA_IMPLEMENTATION,
-                        window.C_CAPTCHA_KEY
-                      ),
-                        (e.src =
-                          "NETEASE" === window.C_CAPTCHA_IMPLEMENTATION
-                            ? "https://cstaticdun.126.net/load.min.js"
-                            : "https://www.google.com/recaptcha/api.js"),
-                        (e.async = !0),
-                        (e.defer = !0),
-                        document.head.appendChild(e),
-                        (y = !0),
-                        (e.onload =
-                          "NETEASE" === window.C_CAPTCHA_IMPLEMENTATION
-                            ? () => {
-                                var e;
-                                null === (e = window.initNECaptcha) ||
-                                  void 0 === e ||
-                                  e.call(window, {
-                                    captchaId: window.C_CAPTCHA_KEY,
-                                    element: "#netease-captcha",
-                                    protocol: "https",
-                                    width: "auto",
-                                    onVerify: (e, t) => {
-                                      _ = t.validate;
-                                    },
-                                  });
-                              }
-                            : () => {});
-                    })();
-                }),
-                (a.onclick = () => E(1)),
-                t.addEventListener("submit", function (e) {
-                  e.preventDefault(),
-                    (r.style.display = "none"),
-                    (m.style.display = "none");
-                  const t = (function () {
-                      let e = "";
-                      const t = document.getElementsByName("report_reason");
-                      for (let o = 0; o < t.length; o++) {
-                        const n = t[o];
-                        !0 === n.checked && (e = n.value);
-                      }
-                      return e;
-                    })(),
-                    o = f();
-                  if (!o) return void (m.style.display = "block");
-                  const n = {
-                      reason: t,
-                      challenge: o,
-                    },
-                    c =
-                      window.location.origin +
-                      window.location.pathname +
-                      "/_api/report";
-                  d.classList.add("loading"),
-                    fetch(c, {
-                      method: "POST",
-                      body: JSON.stringify(n),
-                      headers: {
-                        "Content-Type": "application/json; charset=utf-8",
-                      },
-                    }).then((e) => {
-                      d.classList.remove("loading"),
-                        e.ok ? E(3) : (r.style.display = "block");
-                    });
-                });
-            })();
-          })();
-          window.dispatchEvent(new Event("resize"));
-        });
-      });
-    </script>
   </body>
 </html>
